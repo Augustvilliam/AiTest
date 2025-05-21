@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gros Michel Bananen</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    .banana-song pre {
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 10px;
+      font-family: monospace;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    .banana-song-toggle {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .banana-song-toggle button {
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      font-size: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .minigame {
+      text-align: center;
+      margin: 2rem auto;
+    }
+    #banana-canvas {
+      background: #ffe8b5;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+    .controls {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop id="bg-music">
+    <source src="img/banana-beat.mp3" type="audio/mpeg">
+    Din webbläsare stödjer inte ljuduppspelning.
+  </audio>
+
+  <header>
+    <h1>Gros Michel</h1>
+    <nav>
+      <a href="index.html">Hem</a>
+      <a href="cavendish.html">Cavendish</a>
+      <a href="grosmichel.html">Gros Michel</a>
+    </nav>
+    <button id="toggle-theme">🌓</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img src="img/grosmichel.png" alt="Gros Michel-banan" class="banana-img" />
+      <h2>En legend bland bananer</h2>
+      <p>Gros Michel var standardbananen innan Cavendish tog över.</p>
+    </section>
+
+    <section class="info">
+      <h3>Kuriosa</h3>
+      <ul>
+        <li>Mer aromatisk och fyllig smak än Cavendish</li>
+        <li>Känd för sin hållbarhet</li>
+        <li>Nästan utrotad av Panama-sjukan på 50-talet</li>
+      </ul>
+    </section>
+
+    <section class="minigame">
+      <h3>MiniGame: Fånga bananen!</h3>
+      <canvas id="banana-canvas" width="300" height="400"></canvas>
+      <div class="controls">Använd ⬅️ och ➡️ för att styra korgen och fånga bananen!</div>
+    </section>
+
+    <section class="banana-song">
+      <h3>🎵 Bananlåten: "Bananza!" 🎶</h3>
+      <div class="banana-song-toggle">
+        <button id="show-full-lyrics">Visa hela låten</button>
+      </div>
+      <pre id="lyrics-box" class="hidden"></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Bananinstitutet</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const canvas = document.getElementById("banana-canvas");
+    const ctx = canvas.getContext("2d");
+
+    const banana = {
+      x: Math.random() * 260,
+      y: 0,
+      width: 40,
+      height: 40,
+      speed: 2
+    };
+
+    const basket = {
+      x: 130,
+      y: 360,
+      width: 60,
+      height: 20
+    };
+
+    function drawBanana() {
+      ctx.fillStyle = "#f4a261";
+      ctx.fillRect(banana.x, banana.y, banana.width, banana.height);
+    }
+
+    function drawBasket() {
+      ctx.fillStyle = "#2a9d8f";
+      ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+    }
+
+    function updateGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBanana();
+      drawBasket();
+
+      banana.y += banana.speed;
+      if (banana.y > canvas.height) {
+        banana.y = 0;
+        banana.x = Math.random() * 260;
+      }
+
+      if (
+        banana.y + banana.height > basket.y &&
+        banana.x < basket.x + basket.width &&
+        banana.x + banana.width > basket.x
+      ) {
+        banana.y = 0;
+        banana.x = Math.random() * 260;
+      }
+
+      requestAnimationFrame(updateGame);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") basket.x -= 15;
+      if (e.key === "ArrowRight") basket.x += 15;
+    });
+
+    updateGame();
+
+    // Bananza lyric control
+    const lyricsBox = document.getElementById("lyrics-box");
+    const showBtn = document.getElementById("show-full-lyrics");
+    const lyrics = `
+[Vers 1]
+Böjd men stadig, gul och grann
+Cavendish glider i en gyllene spann
+Frukost, smoothie, eller i en paj
+Bananen säger: “Här kommer jag!”
+
+[Refräng]
+Ba-na-na-na *skaka med skalet!*
+Boo-boo-banana, sväng med valet
+Peel it, feel it, go and squeal it
+🍌 “BANANZA!” – du kan inte dela det i smyg!
+
+[Bridge – bananljud & breakdown]
+Boom-ba-BOING, slip-slop-SPLAT
+Chiki-chaka-woo och bananattack
+*WOP wop* – säger Gros Michel
+“Jag var bäst, innan det blev fel”
+
+[Refräng – repris]
+Ba-na-na-na *frys din smet!*
+Bananvibbar gör din dag komplett
+Zing-zang-zoppa i tropikens stil
+🍌 “BANANZA!” – bananen har profil`;
+
+    showBtn.addEventListener("click", () => {
+      lyricsBox.textContent = lyrics;
+      lyricsBox.classList.remove("hidden");
+      showBtn.classList.add("hidden");
+    });
+  </script>
+</body>

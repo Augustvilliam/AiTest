@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allt om Bananer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>Allt om Bananer</h1>
+    <nav>
+      <a href="index.html">Hem</a>
+      <a href="cavendish.html">Cavendish</a>
+      <a href="grosmichel.html">Gros Michel</a>
+    </nav>
+    <button id="toggle-theme">🌓</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img src="img/cavendish.png" alt="Glad Cavendish-banan" class="banana-img" />
+      <h2>Bananer – Böjda mirakel</h2>
+      <p>Visste du att bananen är ett av världens mest populära frukter?</p>
+    </section>
+
+    <section class="info">
+      <h3>Släkten är värst</h3>
+      <p>Möt den sura släktingen:</p>
+      <img src="img/grumpy-banana.png" alt="Grinig banan" class="grumpy-img" />
+      <blockquote>"Tillbaka i min dag var bananer riktiga bananer..."</blockquote>
+    </section>
+
+    <section class="faq">
+      <h3>Vanliga frågor om bananer</h3>
+      <div class="accordion">
+        <button class="accordion-toggle">Hur många banansorter finns det?</button>
+        <div class="accordion-content">
+          <p>Det finns över 1 000 olika sorters bananer globalt!</p>
+        </div>
+        <button class="accordion-toggle">Är bananer radioaktiva?</button>
+        <div class="accordion-content">
+          <p>Ja, lite grand! Bananer innehåller kalium-40, men det är helt ofarligt.</p>
+        </div>
+        <button class="accordion-toggle">Hur lagrar jag bananer bäst?</button>
+        <div class="accordion-content">
+          <p>Utanför kylen, helst hängande i en klase.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h3>Prenumerera på vårt bananbrev</h3>
+      <form id="newsletter-form">
+        <input type="email" placeholder="Din e-postadress" required />
+        <button type="submit">Anmäl</button>
+      </form>
+      <p id="confirmation" class="hidden">Du är nu med i klungan!</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Bananinstitutet</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

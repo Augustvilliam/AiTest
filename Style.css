@@ -1,0 +1,200 @@
+/* ----- Allmänna variabler ----- */
+:root {
+  --bg: #fefae0;
+  --text: #333;
+  --accent: #f4a261;
+  --card: #fff;
+  --transition: 0.3s ease;
+  --font-main: 'Fredoka', sans-serif;
+}
+
+body.dark {
+  --bg: #1f1f1f;
+  --text: #eee;
+  --accent: #fcbf49;
+  --card: #2b2b2b;
+}
+
+/* ----- Grundläggande layout ----- */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  transition: background var(--transition), color var(--transition);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+}
+
+#toggle-theme {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+footer {
+  background: var(--card);
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* ----- Hero ----- */
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.banana-img {
+  width: 140px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ----- Info ----- */
+.info {
+  margin-top: 2rem;
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.grumpy-img {
+  width: 100px;
+  display: block;
+  margin: 1rem auto;
+}
+
+blockquote {
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* ----- FAQ Accordions ----- */
+.accordion-toggle {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background var(--transition);
+  margin-top: 0.5rem;
+  border-radius: 5px;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: var(--card);
+  padding: 0 1rem;
+}
+
+.accordion-content p {
+  margin: 0.5rem 0;
+}
+
+.accordion-toggle.active + .accordion-content {
+  max-height: 200px;
+  padding: 0.75rem 1rem;
+}
+
+/* ----- Newsletter ----- */
+.newsletter {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.newsletter input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 0.5rem;
+}
+
+.newsletter button {
+  padding: 0.6rem 1rem;
+  background: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#confirmation {
+  margin-top: 1rem;
+  color: green;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+.banana-song pre {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: monospace;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.banana-song-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.banana-song-toggle button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.minigame {
+  text-align: center;
+  margin: 2rem auto;
+}
+#banana-canvas {
+  background: #ffe8b5;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+.controls {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: var(--text);
+}
